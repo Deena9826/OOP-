@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class SwingCalculator {
+public class SwingCalculator extends JFrame implements ActionListener{
 	private JButton jbone,jbtwo,jbthree,jbfour,jbfive,jbsix,jbseven,jbeight,jbnine,jbzero,jbplus,jbminus,jbmul,jbdiv,jbequal,jbclear;
 	private JPanel  panel;
 	private JTextField jtfshow;
@@ -43,19 +43,89 @@ public class SwingCalculator {
 	    panel.add(jbequal);
 	    panel.add(jbdiv);
 	    jtfshow.setEditable(false);
-	    
-	    JFrame frame = new JFrame("Swing Calculator");
-	    frame.setLayout(new BorderLayout());
-	    frame.add(jtfshow,BorderLayout.NORTH);
-	    frame.add(panel,BorderLayout.CENTER);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(300,200);
-		frame.setTitle("Swing Calculator");
-		frame.setVisible(true);
-	
-	
+	    jbclear.addActionListener(this);
+	    jbone.addActionListener(this);
+	    jbtwo.addActionListener(this);
+	    jbthree.addActionListener(this);
+	    jbfour.addActionListener(this);
+	    jbfive.addActionListener(this);
+	    jbsix.addActionListener(this);
+	    jbseven.addActionListener(this);
+	    jbeight.addActionListener(this);
+	    jbnine.addActionListener(this);
+	    jbzero.addActionListener(this);
+	    jbplus.addActionListener(this);
+	    jbmul.addActionListener(this);
+	    jbminus.addActionListener(this);
+	    jbdiv.addActionListener(this);
+	    jbequal.addActionListener(this);
+	    Container c = getContentPane();
+	    c.setLayout(new BorderLayout());
+	    c.add(jtfshow,BorderLayout.NORTH);
+	    c.add(panel,BorderLayout.CENTER);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(300,200);
+		setTitle("Swing Calculator");
+		setVisible(true);
+	}
+	public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jbone)
+           jtfshow.setText(jtfshow.getText()+ "1");
+        else if(e.getSource() == jbtwo)
+           jtfshow.setText(jtfshow.getText()+ "2");
+        else if(e.getSource() == jbthree)
+           jtfshow.setText(jtfshow.getText()+ "3");
+        else if(e.getSource() == jbfour)
+           jtfshow.setText(jtfshow.getText()+ "4");
+        else if(e.getSource() == jbfive)
+           jtfshow.setText(jtfshow.getText()+ "5");
+        else if(e.getSource() == jbsix)
+           jtfshow.setText(jtfshow.getText()+ "6");
+        else if(e.getSource() == jbseven)
+           jtfshow.setText(jtfshow.getText()+ "7");
+        else if(e.getSource() == jbeight)
+           jtfshow.setText(jtfshow.getText()+ "8");
+        else if(e.getSource() == jbnine)
+           jtfshow.setText(jtfshow.getText()+ "9");
+        else if(e.getSource() == jbzero)
+           jtfshow.setText(jtfshow.getText()+ "0");
+        else if(e.getSource() == jbplus){
+        	jtfshow.setText(jtfshow.getText()+ "+");
         }
-   
+        else if(e.getSource() == jbminus)
+           jtfshow.setText(jtfshow.getText()+ "-");
+        else if(e.getSource() == jbmul)
+           jtfshow.setText(jtfshow.getText()+ "*");
+        else if(e.getSource() == jbdiv)
+           jtfshow.setText(jtfshow.getText()+ "/");
+        else if(e.getSource() == jbclear)
+           jtfshow.setText(""); //
+        else if(e.getSource() == jbequal){
+        	String []num = jtfshow.getText().split("[-+*/=]");
+     		char opt = jtfshow.getText().charAt(num[0].length());
+            if(opt == '+')
+            {
+            result = Integer.parseInt(num[0])+Integer.parseInt(num[1]);
+            jtfshow.setText(""+result);
+            }
+            else if(opt == '-')
+            {
+            result = Integer.parseInt(num[0])-Integer.parseInt(num[1]);
+            jtfshow.setText(""+result);
+            }
+            else if(opt == '*')
+            {
+            result = Integer.parseInt(num[0])*Integer.parseInt(num[1]);
+            jtfshow.setText(""+result);
+            }
+            else if(opt == '/')
+            {
+            result = Integer.parseInt(num[0])/Integer.parseInt(num[1]);
+            jtfshow.setText(""+result);
+            }
+
+        }
+   }
 
    public static void main(String[] args){
 		SwingCalculator c = new SwingCalculator();
